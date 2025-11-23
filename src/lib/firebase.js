@@ -1,24 +1,19 @@
-// src/lib/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// PEGA AQUÍ TUS CREDENCIALES (Las que te dio la consola en el Paso 2)
-// Ojo: En un proyecto real usaríamos variables de entorno (.env), 
-// pero para este MVP rápido pégalas directo aquí.
+// Usamos process.env para leer las variables ocultas
 const firebaseConfig = {
-  apiKey: "AIzaSyDaWoJsiGi18UmfRIj7kb4jFydbt9r7Nng",
-  authDomain: "datamind-mvp.firebaseapp.com",
-  projectId: "datamind-mvp",
-  storageBucket: "datamind-mvp.firebasestorage.app",
-  messagingSenderId: "194709820010",
-  appId: "1:194709820010:web:442c5854624c25e8b47013"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
-// Inicializamos Firebase
 const app = initializeApp(firebaseConfig);
 
-// Exportamos las herramientas que usaremos
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 export const db = getFirestore(app);
